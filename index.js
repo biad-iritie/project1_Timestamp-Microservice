@@ -23,7 +23,7 @@ app.get("/api/:date?", (req, res) => {
   input = req.params.date;
 
   let isValidateDate = Date.parse(input);
-  let isValideUnix = /^[0-9]+$/.test(input);
+  let isValidUnix = /^[0-9]+$/.test(input);
   let empty = input == undefined || input == null || input == "";
 
   let unix_output = 0;
@@ -32,7 +32,7 @@ app.get("/api/:date?", (req, res) => {
     unix_output = new Date(input);
     utc_output = unix_output.toUTCString();
     res.json({ unix: unix_output.valueOf(), utc: utc_output });
-  } else if (isNaN(isValidateDate) && isValideUnix) {
+  } else if (isNaN(isValidateDate) && isValidUnix) {
     unix_output = new Date(parseInt(input));
     utc_output = unix_output.toUTCString();
     res.json({ unix: unix_output.valueOf(), utc: utc_output });
